@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ticket_booking_app/pages/forget_password_page.dart';
 import 'package:ticket_booking_app/pages/signup_page.dart';
 
 import '../model/auth_controll.dart';
@@ -73,11 +73,14 @@ class _LoginPageState extends State<LoginPage> {
                     height: 10.0,
                   ),
                   Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text("LogIn",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25,color: Color(0xff4c505b)),)
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text("LogIn",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25,color: Color(0xff4c505b)),)
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -132,6 +135,14 @@ class _LoginPageState extends State<LoginPage> {
                       return null;
                     },
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ForgetPassword()));
+                      }, child: Text("Forgot Password?",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),)
+                    ],
+                  ),
                   SizedBox(
                     height: 20.0,
                   ),
@@ -157,13 +168,30 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     child: Column(
                       children: [
-                        Text("---------- or ----------",style: TextStyle(fontSize: 20, ),)
+                        Text("---------- OR ----------",style: TextStyle(fontSize: 20, ),)
                       ],
                     ),
                   ),
                   SizedBox(height: 10.0,),
                   // -------------Sign up text code--------------
                   Container(
+                      child:Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Don't have an account ?",
+                              style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Color(0xff4c505b)),),
+                            TextButton(onPressed: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => SignupPage()),);
+                            }, child: Text("Sign Up",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.deepPurple),),)
+                          ],
+                        ),
+                      )),
+
+
+
+                  /* Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -174,18 +202,7 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.push(context, MaterialPageRoute(builder: (context)=>SignupPage()),);
 
                           }, child: Text("Sign Up",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),))
-
-                  ),
-                  // ----------------------- Sign up with Google Button Code -------------------
-                  SignInButton(Buttons.Google,
-                      text: "Sign Up With Google",
-                      elevation: 5,
-                      shape: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ), onPressed: (){
-                        signup(context);
-                      }//{Navigator.pushNamed(context, 'home');})
-                  )
+                  ),*/
                 ],
               ),
             ),

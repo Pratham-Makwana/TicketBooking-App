@@ -12,6 +12,7 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   bool  changebutton = false;
+  bool seepwd = true;
   final _formkey = GlobalKey<FormState>();
 
 
@@ -56,7 +57,7 @@ class _SignupPageState extends State<SignupPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text('Sign Up',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),)
+                      Text('Sign Up',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Color(0xff4c505b)),)
                     ],
                   ),
                 ),
@@ -113,10 +114,19 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         TextFormField(
                           controller: password,
-                          obscureText: true,
+                          obscureText: seepwd,
                           decoration: InputDecoration(
                               fillColor: Colors.grey.shade100,
                               filled: true,
+                              suffixIcon: IconButton(
+                                icon: Icon( seepwd ? Icons.visibility_off : Icons.visibility),
+                                //icon:seepwd== false ?Icon(Icons.remove_red_eye_outlined ): Icon(Icons.remove_red_eye) ,
+                                onPressed: (){
+                                  setState(() {
+                                    seepwd=!seepwd;
+                                  });
+                                },
+                              ),
                               border:  OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10)
                               ),
@@ -154,26 +164,6 @@ class _SignupPageState extends State<SignupPage> {
                             ),
                           ),
                         ),
-                        //------------------ or text --------------------
-                        SizedBox(height: 20.0,),
-                        Container(
-                          child: Column(
-                            children: [
-                              Text("------------------------- or -------------------------",style: TextStyle(fontSize: 20, ),)
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: SignInButton(Buttons.Google,
-                              text: "Sign Up With Google",
-                              elevation: 5,
-                              shape: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ), onPressed: (){
-                              }),
-                        )
-
                       ],
                     ),
                   ),
