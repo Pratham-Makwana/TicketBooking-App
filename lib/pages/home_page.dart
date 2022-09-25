@@ -4,8 +4,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ticket_booking_app/model/auth_controll.dart';
 import 'package:ticket_booking_app/pages/add_ticket.dart';
-import 'package:ticket_booking_app/pages/signup_page.dart';
-import '../model/auth_controll.dart';
+
 
 
 class HomePage extends StatefulWidget {
@@ -107,11 +106,23 @@ class _HomePageState extends State<HomePage> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: [
-                                      Text(data['fromcity'],style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
-                                      const Icon(Icons.arrow_right_alt),
-                                      Text(data['tocity'],style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w600),),
+                                      Text(data['fromcity'],style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Colors.deepPurple),),
+                                      const Text("To",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Colors.black),),
+                                      //const Icon(Icons.arrow_right_alt),
+                                      Text(data['tocity'],style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Colors.deepPurple),),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 5,),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      const Text("Name : ",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                                      const SizedBox(width: 5,),
+                                      Text(data['name'],style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                                     ],
                                   ),
                                 ),
@@ -131,26 +142,33 @@ class _HomePageState extends State<HomePage> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Row(
                                     children: [
-                                      const Text("Gender :",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                                      const Text("Mobile No :",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                                       const SizedBox(width: 5,),
-                                      Text(data['gender'],style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                                      Text(data['mobileno'],style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                                     ],
                                   ),
                                 ),
                                 const SizedBox(height: 5,),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text(data['name']),
+                                  child: Row(
+                                    children: [
+                                      const Text("Gender :",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                                      const SizedBox(width: 5,),
+                                      Text(data['gender'],style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                                    ],
+                                  ),
                                 ),
                                 const SizedBox(height: 5,),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text(data['mobileno']),
-                                ),
-                                const SizedBox(height: 5,),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(data['age']),
+                                  child: Row(
+                                    children: [
+                                      const Text("Age :",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                                      const SizedBox(width: 5,),
+                                      Text(data['age'],style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                                    ],
+                                  ),
                                 ),
                                 const SizedBox(height: 5,),
                                 Stack(
@@ -186,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                                                   date: data['date'],
                                                 )));
                                               },
-                                              child: Text("Edit",style: TextStyle(color: Colors.deepPurple),)),
+                                              child: Text("Edit",style: TextStyle(color: Colors.deepPurple,fontSize: 16,fontWeight: FontWeight.bold),)),
                                           InkWell(
                                             onTap: (){
                                               _showMyDialog(
@@ -218,8 +236,8 @@ class _HomePageState extends State<HomePage> {
                                               );
                                             },
                                             child: const Padding(
-                                              padding: EdgeInsets.only(right: 20.0),
-                                              child: Text("Delete",style: TextStyle(color: Colors.red),),
+                                              padding: EdgeInsets.only(right: 60.0),
+                                              child: Text("Delete",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,color: Colors.red),),
                                             ),
                                           ),
                                         ],
