@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ticket_booking_app/pages/home_page.dart';
 import 'package:ticket_booking_app/pages/login_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 // creating firebase instance
@@ -45,9 +46,16 @@ Future<void> signup(BuildContext context) async {
 
 class AuthController extends GetxController
 {
-  signUp(String email,String password) async {
+  signUp(String name,String email,String password) async {
     try{
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password).then((value) {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password).then((value) async {
+
+
+        await  FirebaseFirestore.instance.collection("user").add({
+          "name":name,
+          "email":email,
+          "password":password
+        });
         // print("Done");
         Get.snackbar("Sign Up", "Sign Up successfully",snackPosition: SnackPosition.BOTTOM);
         Get.offAll( LoginPage());
@@ -64,6 +72,7 @@ class AuthController extends GetxController
     SharedPreferences preferences=await SharedPreferences.getInstance();
     try{
       await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value) {
+
         Get.snackbar("Login", "Login successfully",snackPosition: SnackPosition.BOTTOM);
         preferences.setString('token', FirebaseAuth.instance.currentUser!.getIdToken().toString());
         preferences.setString('email', email);

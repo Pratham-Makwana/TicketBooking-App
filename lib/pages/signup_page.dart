@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:get/get.dart';
 import 'package:ticket_booking_app/model/auth_controll.dart';
 
@@ -27,7 +26,7 @@ class _SignupPageState extends State<SignupPage> {
         changebutton = true;
       });
       await Future.delayed(Duration(seconds: 1));
-      await  authController.signUp(username.text, password.text);
+      await  authController.signUp(name.text,username.text, password.text);
       // Navigator.push(
       //context, MaterialPageRoute(builder: (context) => LoginPage()),);
       setState(() {

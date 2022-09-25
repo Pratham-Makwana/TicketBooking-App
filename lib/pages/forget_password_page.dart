@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ticket_booking_app/model/auth_controll.dart';
 import 'package:get/get.dart';
+import 'package:ticket_booking_app/pages/login_page.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({Key? key}) : super(key: key);
@@ -18,9 +19,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
   final _formkey = GlobalKey<FormState>();
 
-  TextEditingController currentpwd = TextEditingController();
-  TextEditingController newpwd = TextEditingController();
-  TextEditingController confirmpwd = TextEditingController();
+  TextEditingController email = TextEditingController();
   AuthController authController=Get.put(AuthController());
 
   //Function to move to login page
@@ -30,7 +29,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         changebutton = true;
       });
       await Future.delayed(Duration(seconds: 2));
-      await authController.changePassword(currentpwd.text,newpwd.text);
+      await authController.forgotPassword(email.text);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
       setState(() {
         changebutton = false;
       });
@@ -57,7 +57,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Change Password",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Color(0xff4c505b)),),
+                      Text("Forgot Password",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Color(0xff4c505b)),),
                     ],
                   ),
                 ),
@@ -69,100 +69,18 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   child: Column(
                     children: [
                       TextFormField(
-                        controller: currentpwd,
-                        obscureText: seecurrentpwd,
+                        controller: email,
                         decoration: InputDecoration(
                             fillColor: Colors.grey.shade100,
                             filled: true,
-                            suffixIcon: IconButton(
-                              icon: Icon( seecurrentpwd ? Icons.visibility_off : Icons.visibility),
-                              //icon:seepwd== false ?Icon(Icons.remove_red_eye_outlined ): Icon(Icons.remove_red_eye) ,
-                              onPressed: (){
-                                setState(() {
-                                  seecurrentpwd=!seecurrentpwd;
-                                });
-                              },
-                            ),
-                            border:  OutlineInputBorder(
+                            hintText: "Enter Your Email",
+                            border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10)
                             ),
-                            labelText: 'Current Password',
-                            hintText: 'Enter Your Current Password'
-                        ),
-                        validator: (value){
-                          if (value!.isEmpty){
-                            return "Password cannot be Empty";
-                          }
-                          else if(value.length < 6){
-                            return "Password length should be atleast 6";
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      TextFormField(
-                        controller: newpwd,
-                        obscureText: seenewpwd,
-                        decoration: InputDecoration(
-                            fillColor: Colors.grey.shade100,
-                            filled: true,
-                            suffixIcon: IconButton(
-                              icon: Icon( seenewpwd ? Icons.visibility_off : Icons.visibility),
-                              //icon:seepwd== false ?Icon(Icons.remove_red_eye_outlined ): Icon(Icons.remove_red_eye) ,
-                              onPressed: (){
-                                setState(() {
-                                  seenewpwd=!seenewpwd;
-                                });
-                              },
-                            ),
-                            border:  OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            labelText: ' New Password',
-                            hintText: 'Enter Your New Password'
-                        ),
-                        validator: (value){
-                          if (value!.isEmpty){
-                            return "Password cannot be Empty";
-                          }
-                          else if(value.length < 6){
-                            return "Password length should be atleast 6";
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      TextFormField(
-                        controller: confirmpwd,
-                        obscureText: seeconfimepwd,
-                        decoration: InputDecoration(
-                            fillColor: Colors.grey.shade100,
-                            filled: true,
-                            suffixIcon: IconButton(
-                              icon: Icon( seeconfimepwd ? Icons.visibility_off : Icons.visibility),
-                              //icon:seepwd== false ?Icon(Icons.remove_red_eye_outlined ): Icon(Icons.remove_red_eye) ,
-                              onPressed: (){
-                                setState(() {
-                                  seeconfimepwd=!seeconfimepwd;
-                                });
-                              },
-                            ),
-                            border:  OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            labelText: 'Confirm Password',
-                            hintText: 'Enter Confirm Password'
-                        ),
-                        validator: (value){
-                          if (value!.isEmpty){
-                            return "Password cannot be Empty";
-                          }
-                          else if(value.length < 6){
-                            return "Password length should be atleast 6";
+                            labelText: "Email"),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Email cannot be empty";
                           }
                           return null;
                         },

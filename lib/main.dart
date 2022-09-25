@@ -1,11 +1,11 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
-import 'package:ticket_booking_app/pages/home_page.dart';
+
 import 'package:ticket_booking_app/widgets/theme.dart';
 
-import '../pages/login_page.dart';
+import 'pages/login_page.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
