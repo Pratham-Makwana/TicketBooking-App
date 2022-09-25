@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ticket_booking_app/pages/forget_password_page.dart';
 import 'package:ticket_booking_app/pages/signup_page.dart';
-
 import '../model/auth_controll.dart';
 import 'home_page.dart';
 
