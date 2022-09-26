@@ -94,6 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                   //------Textformfiled code-------------
                   TextFormField(
                     controller: username,
+                    keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                         fillColor: Colors.grey.shade100,
                         filled: true,
