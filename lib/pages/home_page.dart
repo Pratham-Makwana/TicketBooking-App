@@ -53,7 +53,9 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title:const Text("Ticket Booking"),
+          leading: Icon(Icons.train,color: Colors.white),
+
+          title:const Text("Train Ticket Booking"),
           foregroundColor: Colors.white,
           backgroundColor: Colors.deepPurple,
           actions: [
@@ -74,7 +76,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
+          child: const Icon(Icons.add_box),
           onPressed: (){
             Get.to(const Add());
           },
